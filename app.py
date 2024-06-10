@@ -19,9 +19,7 @@ clf.fit(X_train, y_train.values.ravel())
 # Streamlit app
 st.title("Iris Flower Species Classification")
 
-st.write("
-This app uses a RandomForestClassifier to classify Iris flower species based on their features.
-")
+st.write("This app uses a RandomForestClassifier to classify Iris flower species based on their features.")
 
 # Sidebar for user input
 st.sidebar.header('User Input Features')
@@ -44,8 +42,8 @@ input_df = user_input_features()
 iris_data = pd.concat([input_df, X], axis=0)
 
 # Predict the class
-prediction = clf.predict(input_df)
-prediction_proba = clf.predict_proba(input_df)
+prediction = clf.predict(iris_data.tail(1))
+prediction_proba = clf.predict_proba(iris_data.tail(1))
 
 # Display results
 st.subheader('Prediction')
@@ -54,4 +52,3 @@ st.write(iris_species[prediction[0]])
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
-"""
